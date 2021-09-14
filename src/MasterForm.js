@@ -18,8 +18,6 @@ class MasterForm extends React.Component {
 
         //allows method to access this classes props and state.
         this.handleChange = this.handleChange.bind(this);
-        this._next = this._next.bind(this);
-        this._prev = this._prev.bind(this);
     }
 
     handleChange(event) {
@@ -42,17 +40,15 @@ class MasterForm extends React.Component {
         //remove the qualification from the list.
     }
 
-    _next(){
+    next = () => {
         let currentStep = this.state.currentStep;
-        //TODO: Add an if statement here:
         this.setState({
             currentStep: currentStep + 1
         });
     }
 
-    _prev(){
+    prev = () => {
         let currentStep = this.state.currentStep;
-        //TODO: Add an if statement here to stop negative numbers:
         this.setState({
             currentStep: currentStep - 1
         });
@@ -70,37 +66,6 @@ class MasterForm extends React.Component {
               Password: ${password}`);
     }
 
-    //Using properties:
-    get previousButton(){
-        let currentStep = this.state.currentStep;
-        if(currentStep !== 1){
-            return(
-            <Button
-                className="btn btn-secondary"
-                type="button"
-                onClick={this._prev}>Previous</Button>)
-        }
-        else{
-            return null;
-        }
-    }
-
-    get nextButton(){
-        let currentStep = this.state.currentStep;
-        if(currentStep < 3){
-            return(
-                <Button
-                    className="btn btn-primary float-right"
-                    variant="contained"
-                    color="primary"
-                    onClick={this._next}>Next</Button>
-            )
-        }
-        else{
-            return null;
-        }
-    }
-
     render(){
         return(
             <React.Fragment>
@@ -113,16 +78,16 @@ class MasterForm extends React.Component {
                     <Details
                         currentStep={this.state.currentStep}
                         handleChange={this.handleChange}
-                        email={this.state.email}/>
+                        email={this.state.email}
+                        next={this.next}/>
 
                     <Qualifications
                         currentStep={this.state.currentStep}
                         handleChange={this.handleChange}
                         addQualification={this.addQualification}
-                        qualifications ={this.state.qualifications}/>
-
-                    {this.previousButton}
-                    {this.nextButton}
+                        qualifications ={this.state.qualifications}
+                        next={this.next}
+                        prev={this.prev}/>
 
                 </form>
 

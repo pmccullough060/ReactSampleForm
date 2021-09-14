@@ -9,10 +9,6 @@ class QualificationItemEdit extends React.Component {
         this.props.leaveEditMode();
     };
 
-    cancel = () => {
-
-    };
-
     render() {
         return (
             <div className='qualificationItemEdit'>
