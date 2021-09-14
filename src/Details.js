@@ -19,7 +19,7 @@ class Details extends React.Component{
         else{
             return(
                 <div className="formGroup">
-                    <h2 className="title">Personal Details</h2>
+                    <h2>Personal Details</h2>
                         <div className="formRow">
                             <Input 
                                 className="input"

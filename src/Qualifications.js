@@ -1,9 +1,26 @@
 import './Qualifications.css';
-import QualificationItem from './QualificationItem.js'
+import QualificationItem from './QualificationItem.js';
+import QualificationItemEdit from './QualificationItemEdit';
 import React from 'react';
 import { Button, Box, List } from '@material-ui/core';
 
 class Qualifications extends React.Component {
+
+    constructor(props){
+        super(props)
+
+        this.state = {
+            editMode : false
+        }
+    }
+
+    //the "ADD NEW button changes the editMode state to true"
+    //this then shows the QualificationItemEdit component
+    //this persists the Qualification as state until the user submits it or cancels it.
+
+    leaveEditMode = () => {
+        this.setState({editMode : false});
+    }
 
     render() {
 
@@ -12,7 +29,8 @@ class Qualifications extends React.Component {
         if (this.props.currentStep !== 2) {
             return null;
         }
-        else {
+
+        else if(this.state.editMode === false) {
             return (
                 <div className="formGroup">
 
@@ -23,7 +41,7 @@ class Qualifications extends React.Component {
                             className="buttonMain"
                             variant="contained"
                             color="primary"
-                            onClick={this.props.addQualification}>Add New
+                            onClick={() => this.setState({editMode : true})}>Add New
                         </Button>
                     </Box>
 
@@ -41,6 +59,14 @@ class Qualifications extends React.Component {
                 </div>
             )
         }
+
+        else{
+            return(
+                <QualificationItemEdit 
+                    addQualification = {this.props.addQualification}
+                    leaveEditMode = {this.leaveEditMode}/>
+            )
+        };
     }
 }
 

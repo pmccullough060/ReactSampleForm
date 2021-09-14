@@ -7,12 +7,17 @@ class QualificationItem extends React.Component {
 
     constructor(props){
         super(props)
+        this.state = {
+            editMode : true
+        }
     }
 
     render(){
+                
         return(
             <ListItem className='qualificationItem'>
                 <div className='innerListItem'>
+
                     <ListItemText
                         primary={this.props.name}/>
                 </div>
