@@ -88,7 +88,7 @@ class Qualifications extends React.Component {
                                 qualifications.map((_qualification, _index) => {
                                     return (
                                         <div key={_index}>
-                                            <QualificationItem name={_qualification.name} />
+                                            <QualificationItem qualification={_qualification} />
                                         </div>
                                     )
                                 })

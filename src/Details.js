@@ -45,7 +45,7 @@ class Details extends React.Component {
         }
         else {
             return (
-                <div className={classes.root}>
+                <div>
                     <div className={classes.formGroup}>
                         <h2>Personal Details</h2>
                         <div className={classes.formRow}>

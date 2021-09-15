@@ -27,12 +27,8 @@ class MasterForm extends React.Component {
         })
     }
 
-    addQualification = () => {
+    addQualification = (qualification) => {
         const { qualifications } = this.state;
-        const qualification = {
-            name: 'engineering',
-            grade: 'A'
-        }
         this.setState({qualifications: [...qualifications, qualification]});
     }
 
