@@ -2,48 +2,80 @@ import React from 'react';
 import './QualificationItem.css';
 import { withStyles } from "@material-ui/core/styles";
 import { ListItem, ListItemText } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { School, Work, DateRange, Delete, Edit } from "@material-ui/icons"
 
 const useStyles = theme => ({
-    formGroup: {
-        margin: 'auto',
-        overflow: 'auto',
-        maxWidth: '800px',
-        width: '50%',
-        backgroundColor: '#EDECE8',
-        borderRadius: '10px',
-        boxShadow: '2px 2px 15px #3A3b3c',
+    icon: {
+        marginTop: '5px',
+        marginLeft: '5px'
+    },
+    institutionTitle: {
+        marginTop: '5px',
+        marginLeft: '5px',
+        marginBottom: '2px',
+        fontWeight: 600,
+        fontSize: '18px'
+    },
+    qualificationTitle: {
+        marginTop: '5px',
+        marginLeft: '5px',
+        marginBottom: '10px'
+    },
+    date: {
+        marginTop: '5px',
+        marginLeft: '5px',
+        marginBottom: '2px',
+        fontWeight: 500,
+        fontSize: '14px'
     },
     formRow: {
-        margin: '20px',
         display: 'flex',
-        justifyContent: 'center',
-    },
-    textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        backgroundColor: 'white',
         width: '100%'
+    },
+    formRowButton: {
+        display: 'flex'
     },
     button: {
         float: 'right',
-        margin: theme.spacing(2)
+        margin: '5px'
     }
 });
 
 class QualificationItem extends React.Component {
 
-    render(){
-        const { classes, qualification } = this.props;
+    render() {
+        const { classes, qualification, removeQualification } = this.props;
 
-        return(
+        return (
             <ListItem className='qualificationItem'>
                 <div className='innerListItem'>
 
-                    <h3>{this.props.qualification.institution}</h3>
+                    <div className={classes.formRow}>
+                        <div className={classes.formRow}>
+                            <Work className={classes.icon} />
+                            <p className={classes.institutionTitle}>{this.props.qualification.institution}</p>
+                        </div>
+                        <div className={classes.formRowButton}>
+                            
+                            <Edit className={classes.icon} />
 
-                    <ListItemText
-                        primary={this.props.qualification.institution}/>
+                            <Delete className={classes.icon} 
+                                    onClick={() => this.props.removeQualification(qualification)}/>
+                        </div>
+
+                    </div>
+
+                    <div className={classes.formRow}>
+                        <DateRange className={classes.icon} />
+                        <p className={classes.date}>{this.props.qualification.start}</p>
+                        <p className={classes.date}>-</p>
+                        <p className={classes.date}>{this.props.qualification.end}</p>
+                    </div>
+
+                    <div className={classes.formRow}>
+                        <School className={classes.icon} />
+                        <p className={classes.qualificationTitle}>{this.props.qualification.name}</p>
+                    </div>
                 </div>
             </ListItem>
         )

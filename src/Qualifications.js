@@ -62,7 +62,7 @@ class Qualifications extends React.Component {
     }
 
     render() {
-        const { qualifications, classes } = this.props;
+        const { qualifications, classes, removeQualification } = this.props;
 
         if (this.props.currentStep !== 2) {
             return null;
@@ -70,7 +70,6 @@ class Qualifications extends React.Component {
 
         else if (this.state.editMode === false) {
             return (
-
                 <div>
                     <div className={classes.formGroup}>
 
@@ -88,7 +87,8 @@ class Qualifications extends React.Component {
                                 qualifications.map((_qualification, _index) => {
                                     return (
                                         <div key={_index}>
-                                            <QualificationItem qualification={_qualification} />
+                                            <QualificationItem qualification={_qualification} 
+                                                               removeQualification = {this.props.removeQualification}/>
                                         </div>
                                     )
                                 })

@@ -49,6 +49,7 @@ class Details extends React.Component {
                     <div className={classes.formGroup}>
                         <h2>Personal Details</h2>
                         <div className={classes.formRow}>
+                            
                             <TextField
                                 className={classes.textField}
                                 id="firstName"

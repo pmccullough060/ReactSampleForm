@@ -33,7 +33,9 @@ class MasterForm extends React.Component {
     }
 
     removeQualification = (qualification) => {
-        //remove the qualification from the list.
+        //removing the passed in note from qualifications:
+        const { qualifications } = this.state;
+        this.setState({qualifications: qualifications.filter(_qualification => _qualification !== qualification)});
     }
 
     next = () => {
@@ -81,6 +83,7 @@ class MasterForm extends React.Component {
                         currentStep={this.state.currentStep}
                         handleChange={this.handleChange}
                         addQualification={this.addQualification}
+                        removeQualification={this.removeQualification}
                         qualifications ={this.state.qualifications}
                         next={this.next}
                         prev={this.prev}/>
