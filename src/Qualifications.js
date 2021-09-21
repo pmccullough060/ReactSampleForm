@@ -49,16 +49,18 @@ class Qualifications extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            editMode: false
+            editMode: false,
+            selectedQualification: null
         }
     }
 
-    //the "ADD NEW button changes the editMode state to true"
-    //this then shows the QualificationItemEdit component
-    //this persists the Qualification as state until the user submits it or cancels it.
-
     leaveEditMode = () => {
         this.setState({ editMode: false });
+    }
+
+    //Review whether we need to call set state twice.....
+    editQualification = (qualification) => {        
+        this.setState({ selectedQualification: qualification, editMode: true });
     }
 
     render() {
@@ -79,16 +81,17 @@ class Qualifications extends React.Component {
                             className="buttonMain"
                             variant="contained"
                             color="primary"
-                            onClick={() => this.setState({ editMode: true })}>Add New
+                            onClick={ () => this.setState({ editMode: true, selectedQualification: null})}>Add New
                         </Button>
 
                         <List>
                             {
                                 qualifications.map((_qualification, _index) => {
                                     return (
-                                        <div key={_index}>
-                                            <QualificationItem qualification={_qualification} 
-                                                               removeQualification = {this.props.removeQualification}/>
+                                        <div key={ _index }>
+                                            <QualificationItem qualification={ _qualification } 
+                                                               editQualification = { this.editQualification }
+                                                               removeQualification = { removeQualification }/>
                                         </div>
                                     )
                                 })
@@ -118,6 +121,7 @@ class Qualifications extends React.Component {
         else {
             return (
                 <QualificationItemEdit
+                    qualification = {this.state.selectedQualification}
                     addQualification={this.props.addQualification}
                     leaveEditMode={this.leaveEditMode} />
             )

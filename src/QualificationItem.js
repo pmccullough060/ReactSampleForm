@@ -56,13 +56,12 @@ class QualificationItem extends React.Component {
                             <p className={classes.institutionTitle}>{this.props.qualification.institution}</p>
                         </div>
                         <div className={classes.formRowButton}>
-                            
-                            <Edit className={classes.icon} />
+                            <Edit className={classes.icon} 
+                                  onClick={() => this.props.editQualification(qualification)}/>
 
                             <Delete className={classes.icon} 
                                     onClick={() => this.props.removeQualification(qualification)}/>
                         </div>
-
                     </div>
 
                     <div className={classes.formRow}>

@@ -34,12 +34,25 @@ class QualificationItemEdit extends React.Component {
     constructor(props){
         super(props)
 
-        this.state = {
-            institution : '',
-            start : '',
-            end : '',
-            name : '',
-            grade : ''
+        const { qualification } = this.props;
+
+        if(qualification == null){
+            this.state = {
+                institution : '',
+                start : '',
+                end : '',
+                name : '',
+                grade : ''
+            }
+        }
+        else{
+            this.state = {
+                institution : qualification.institution,
+                start : '',
+                end : '',
+                name : '',
+                grade : ''
+            }
         }
     }
 
@@ -74,6 +87,7 @@ class QualificationItemEdit extends React.Component {
                         className={classes.textField}
                         placeholder="Name of School/Academic Provider"
                         variant="outlined" 
+                        value = {this.state.institution}
                         onChange={ e => this.setState({ institution : e.target.value }) }/>
                 </div>
 

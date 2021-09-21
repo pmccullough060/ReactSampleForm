@@ -28,6 +28,9 @@ class MasterForm extends React.Component {
     }
 
     addQualification = (qualification) => {
+
+        //if the qualification doesn't exist add it else update the existing.
+
         const { qualifications } = this.state;
         this.setState({qualifications: [...qualifications, qualification]});
     }
