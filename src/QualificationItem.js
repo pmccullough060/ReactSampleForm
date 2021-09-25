@@ -1,10 +1,16 @@
 import React from 'react';
-import './QualificationItem.css';
 import { withStyles } from "@material-ui/core/styles";
 import { ListItem, ListItemText } from '@material-ui/core';
 import { School, Work, DateRange, Delete, Edit } from "@material-ui/icons"
 
 const useStyles = theme => ({
+    innerListItem: {
+        margin: 'auto',
+        width: '100%',
+        backgroundColor: '#FEFBF3',
+        borderRadius: '5px',
+        boxShadow: '2px 2px 10px #3A3b3c'
+    },
     icon: {
         marginTop: '5px',
         marginLeft: '5px'
@@ -48,7 +54,7 @@ class QualificationItem extends React.Component {
 
         return (
             <ListItem className='qualificationItem'>
-                <div className='innerListItem'>
+                <div className={classes.innerListItem}>
 
                     <div className={classes.formRow}>
                         <div className={classes.formRow}>
