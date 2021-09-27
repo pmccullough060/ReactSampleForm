@@ -36,40 +36,32 @@ class QualificationItemEdit extends React.Component {
 
         const { qualification } = this.props;
 
+        //A qualification is passed into this view model
+        //We can then change its state
+        //We it comes times to submit the view model we use the addQualification(qualification) method passed into the view model.
+        //This will either update the state of the existing qualification or add a new qualification.
+
         if(qualification == null){
-            this.state = {
+
+            //If the qualification is null we create our own instance of a qualification object.
+            this.state = { qualification : { 
                 institution : '',
                 start : '',
                 end : '',
                 name : '',
                 grade : ''
-            }
+                } 
+             }
+
         }
         else{
-            this.state = {
-                institution : qualification.institution,
-                start : '',
-                end : '',
-                name : '',
-                grade : ''
-            }
+            this.state = { qualification : qualification }
         }
     }
 
     submit = () => {
 
-        const qualification = {
-            institution : this.state.institution,
-            start : this.state.start,
-            end : this.state.end,
-            name : this.state.name,
-            grade : this.state.grade
-        }
-
-        this.props.addQualification(qualification);
-        
-        //temp
-        console.log(qualification);
+        this.props.addQualification(this.state.qualification);
 
         this.props.leaveEditMode();
     };
@@ -87,8 +79,15 @@ class QualificationItemEdit extends React.Component {
                         className={classes.textField}
                         placeholder="Name of School/Academic Provider"
                         variant="outlined" 
-                        value = {this.state.institution}
-                        onChange={ e => this.setState({ institution : e.target.value }) }/>
+                        value = {this.state.qualification.institution}
+
+                        onChange= { e => this.setState({ 
+                            qualification : {
+                                ...this.state.qualification, 
+                                "institution" : e.target.value
+                            }
+                        }) 
+                    }/>
                 </div>
 
                 <div className={classes.formRow}>
