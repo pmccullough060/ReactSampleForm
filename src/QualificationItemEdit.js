@@ -29,37 +29,39 @@ const useStyles = theme => ({
     }
 });
 
+//https://itnext.io/updating-properties-of-an-object-in-react-state-af6260d8e9f5
+
 class QualificationItemEdit extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
 
         const { qualification } = this.props;
 
         //A qualification is passed into this view model
-        //We can then change its state
+        //We can update the state of the qualification item
         //We it comes times to submit the view model we use the addQualification(qualification) method passed into the view model.
         //This will either update the state of the existing qualification or add a new qualification.
 
-        if(qualification == null){
-
-            //If the qualification is null we create our own instance of a qualification object.
-            this.state = { qualification : { 
-                institution : '',
-                start : '',
-                end : '',
-                name : '',
-                grade : ''
-                } 
-             }
-
+        if (qualification == null) {
+            this.state = {
+                qualification: {
+                    institution: '',
+                    start: '',
+                    end: '',
+                    name: '',
+                    grade: ''
+                }
+            }
         }
-        else{
-            this.state = { qualification : qualification }
+        else {
+            this.state = { qualification: qualification }
         }
     }
 
     submit = () => {
+
+        this.props.removeQualification(this.state.initialQualification);
 
         this.props.addQualification(this.state.qualification);
 
@@ -78,16 +80,15 @@ class QualificationItemEdit extends React.Component {
                     <TextField
                         className={classes.textField}
                         placeholder="Name of School/Academic Provider"
-                        variant="outlined" 
-                        value = {this.state.qualification.institution}
-
-                        onChange= { e => this.setState({ 
-                            qualification : {
-                                ...this.state.qualification, 
-                                "institution" : e.target.value
+                        variant="outlined"
+                        value={this.state.qualification.institution}
+                        onChange={e => this.setState({
+                            qualification: {
+                                ...this.state.qualification,
+                                institution: e.target.value
                             }
-                        }) 
-                    }/>
+                        })
+                        } />
                 </div>
 
                 <div className={classes.formRow}>
@@ -95,41 +96,69 @@ class QualificationItemEdit extends React.Component {
                         className={classes.textField}
                         placeholder="Start date"
                         variant="outlined"
-                        type="date" 
-                        onChange={ e => this.setState({start : e.target.value }) }/>
+                        type="date"
+                        value={this.state.qualification.start}
+                        onChange={e => this.setState({
+                            qualification: {
+                                ...this.state.qualification,
+                                start: e.target.value
+                            }
+                        })
+                        } />
 
                     <TextField
                         className={classes.textField}
                         placeholder="End date"
                         variant="outlined"
-                        type="date" 
-                        onChange={ e => this.setState({end : e.target.value }) }/>
+                        type="date"
+                        value={this.state.qualification.end}
+                        onChange={e => this.setState({
+                            qualification: {
+                                ...this.state.qualification,
+                                end: e.target.value
+                            }
+                        })
+                        } />
                 </div>
 
                 <div className={classes.formRow}>
                     <TextField
                         className={classes.textField}
-                        placeholder="Qualification" 
+                        placeholder="Qualification"
                         variant="outlined"
-                        onChange={ e => this.setState({name : e.target.value }) }/>
+                        value={this.state.qualification.name}
+                        onChange={e => this.setState({
+                            qualification: {
+                                ...this.state.qualification,
+                                name: e.target.value
+                            }
+                        })
+                        } />
 
                     <TextField
                         className={classes.textField}
                         placeholder="Grade"
-                        variant="outlined" 
-                        onChange={ e => this.setState({grade : e.target.value }) }/>
+                        variant="outlined"
+                        value={this.state.qualification.grade}
+                        onChange={e => this.setState({
+                            qualification: {
+                                ...this.state.qualification,
+                                grade: e.target.value
+                            }
+                        })
+                        } />
                 </div>
 
                 <div className={classes.formRow}>
-                <Button
-                            className={classes.button}
-                            variant="contained"
-                            onClick={this.props.leaveEditMode}>Cancel</Button>
+                    <Button
+                        className={classes.button}
+                        variant="contained"
+                        onClick={this.props.leaveEditMode}>Cancel</Button>
 
                     <Button className={classes.button}
-                            variant="contained"
-                            color="primary"
-                            onClick={this.submit}>Submit</Button>
+                        variant="contained"
+                        color="primary"
+                        onClick={this.submit}>Submit</Button>
                 </div>
             </div>
         )
