@@ -64,7 +64,7 @@ class Qualifications extends React.Component {
     }
 
     render() {
-        const { qualifications, classes, removeQualification, addQualification } = this.props;
+        const { qualifications, classes, removeQualification, addQualification, updateQualification } = this.props;
 
         if (this.props.currentStep !== 2) {
             return null;
@@ -124,6 +124,7 @@ class Qualifications extends React.Component {
                     qualification = {this.state.selectedQualification}
                     removeQualification = { removeQualification }
                     addQualification={ addQualification }
+                    updateQualification= { updateQualification }
                     leaveEditMode={this.leaveEditMode} />
             )
         };

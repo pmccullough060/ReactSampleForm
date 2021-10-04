@@ -38,11 +38,6 @@ class QualificationItemEdit extends React.Component {
 
         const { qualification } = this.props;
 
-        //A qualification is passed into this view model
-        //We can update the state of the qualification item
-        //We it comes times to submit the view model we use the addQualification(qualification) method passed into the view model.
-        //This will either update the state of the existing qualification or add a new qualification.
-
         if (qualification == null) {
             this.state = {
                 qualification: {
@@ -55,15 +50,19 @@ class QualificationItemEdit extends React.Component {
             }
         }
         else {
-            this.state = { qualification: qualification }
+            this.state = { 
+                qualification: qualification,
+                initialQualification: qualification }
         }
     }
 
     submit = () => {
 
-        this.props.removeQualification(this.state.initialQualification);
+        //this.props.removeQualification(this.state.initialQualification);
 
-        this.props.addQualification(this.state.qualification);
+        this.props.updateQualification(this.state.initialQualification, this.state.qualification);
+
+        //this.props.addQualification(this.state.qualification);
 
         this.props.leaveEditMode();
     };
