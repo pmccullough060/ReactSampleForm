@@ -2,6 +2,7 @@ import React from 'react';
 import Details from './Details.js';
 import Qualifications from './Qualifications';
 import { Button } from '@material-ui/core';
+import Progress from './Progress.js';
 
 class MasterForm extends React.Component {
 
@@ -70,13 +71,16 @@ class MasterForm extends React.Component {
               Password: ${password}`);
     }
 
+    //we need to have react component for progress.
+
     render(){
         return(
-            <React.Fragment>
+            <div>
                 <h1>Sample Form!</h1>
 
-                Step { this.state.currentStep }
-
+                <Progress
+                    currentStep={this.state.currentStep}/>
+                
                 <form onSubmit={ this.handleSubmit }>
 
                     <Details
@@ -97,7 +101,7 @@ class MasterForm extends React.Component {
 
                 </form>
 
-            </React.Fragment>
+            </div>
         )
     }
 }
