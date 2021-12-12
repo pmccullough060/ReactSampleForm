@@ -1,4 +1,3 @@
-import './Qualifications.css';
 import QualificationItem from './QualificationItem.js';
 import QualificationItemEdit from './QualificationItemEdit';
 import React from 'react';

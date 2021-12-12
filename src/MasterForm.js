@@ -1,6 +1,7 @@
 import React from 'react';
 import Details from './Details.js';
 import Qualifications from './Qualifications';
+import WorkExperience from './WorkExperience';
 import { Button } from '@material-ui/core';
 import Progress from './Progress.js';
 
@@ -99,6 +100,9 @@ class MasterForm extends React.Component {
                         next={this.next}
                         prev={this.prev}/>
 
+                    <WorkExperience
+                        currentStep={this.state.currentStep}
+                        prev={this.prev}/>
                 </form>
 
             </div>
