@@ -58,11 +58,7 @@ class QualificationItemEdit extends React.Component {
 
     submit = () => {
 
-        //this.props.removeQualification(this.state.initialQualification);
-
         this.props.updateQualification(this.state.initialQualification, this.state.qualification);
-
-        //this.props.addQualification(this.state.qualification);
 
         this.props.leaveEditMode();
     };
