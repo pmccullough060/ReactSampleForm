@@ -1,4 +1,5 @@
 import React from 'react';
+import WorkExperienceItemEdit from './WorkExperienceItemEdit';
 import { withStyles } from "@material-ui/core/styles";
 import { Button, Box, List } from '@material-ui/core';
 
@@ -97,9 +98,8 @@ class WorkExperience extends React.Component {
         }
         else {
             return (
-                <div className={classes.formGroup}>
-                    <div>Hello! Edit mode true</div>
-                </div>
+                <WorkExperienceItemEdit
+                    experience = { this.state.selectedExperienced }/>
             )
         };
     }
