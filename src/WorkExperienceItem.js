@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from "@material-ui/core/styles";
-import { ListItem, ListItemText } from '@material-ui/core';
+import { ListItem } from '@material-ui/core';
 import { School, Work, DateRange, Delete, Edit } from "@material-ui/icons"
 
 const useStyles = theme => ({
@@ -15,14 +15,14 @@ const useStyles = theme => ({
         marginTop: '5px',
         marginLeft: '5px'
     },
-    institutionTitle: {
+    employerTitle: {
         marginTop: '5px',
         marginLeft: '5px',
         marginBottom: '2px',
         fontWeight: 600,
         fontSize: '18px'
     },
-    qualificationTitle: {
+    jobRoleTitle: {
         marginTop: '5px',
         marginLeft: '5px',
         marginBottom: '10px'
@@ -47,10 +47,12 @@ const useStyles = theme => ({
     }
 });
 
-class QualificationItem extends React.Component {
+class WorkExperienceItem extends React.Component {
 
     render() {
-        const { classes, qualification, removeQualification } = this.props;
+        const { classes, experience, removeExperience } = this.props;
+
+        console.log(experience);
 
         return (
             <ListItem>
@@ -59,32 +61,37 @@ class QualificationItem extends React.Component {
                     <div className={classes.formRow}>
                         <div className={classes.formRow}>
                             <Work className={classes.icon} />
-                            <p className={classes.institutionTitle}>{this.props.qualification.institution}</p>
+                            <p className={classes.employerTitle}>{experience.employer}</p>
                         </div>
-                        <div className={classes.formRowButton}>
-                            <Edit className={classes.icon} 
-                                  onClick={() => this.props.editQualification(qualification)}/>
 
-                            <Delete className={classes.icon} 
-                                    onClick={() => this.props.removeQualification(qualification)}/>
+                        <div className={classes.formRowButton}>
+                            <Edit className={classes.icon}
+                                onClick={() => this.props.editExperience(experience)} />
+                            <Delete className={classes.icon}
+                                onClick={() => this.props.removeExperience(experience)} />
                         </div>
+                    </div>
+
+                    <div className={classes.formRow}>
+                        <School className={classes.icon}/>
+                        <p className={classes.jobRoleTitle}>{experience.jobTitle}</p>
                     </div>
 
                     <div className={classes.formRow}>
                         <DateRange className={classes.icon} />
-                        <p className={classes.date}>{this.props.qualification.start}</p>
+                        <p className={classes.date}>{experience.start}</p>
                         <p className={classes.date}>-</p>
-                        <p className={classes.date}>{this.props.qualification.end}</p>
+                        <p className={classes.date}>{experience.end}</p>
                     </div>
 
-                    <div className={classes.formRow}>
-                        <School className={classes.icon} />
-                        <p className={classes.qualificationTitle}>{this.props.qualification.name}</p>
+                    <div>
+                    <p className={classes.jobRoleTitle}>{experience.description}</p>
                     </div>
+
                 </div>
             </ListItem>
         )
     };
 }
 
-export default withStyles(useStyles)(QualificationItem);
+export default withStyles(useStyles)(WorkExperienceItem);

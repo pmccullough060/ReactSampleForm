@@ -1,7 +1,8 @@
 import React from 'react';
 import WorkExperienceItemEdit from './WorkExperienceItemEdit';
+import WorkExperienceItem from './WorkExperienceItem';
 import { withStyles } from "@material-ui/core/styles";
-import { Button, Box, List } from '@material-ui/core';
+import { Button, List } from '@material-ui/core';
 
 //Inject some CSS into the DOM:
 const useStyles = theme => ({
@@ -48,7 +49,7 @@ class WorkExperience extends React.Component {
         super(props)
         this.state = {
             editMode: false,
-            selectedExperienced: null
+            selectedExperience: null
         }
     }
 
@@ -81,7 +82,17 @@ class WorkExperience extends React.Component {
                         </Button>
 
                         <List>
-
+                            {
+                                experiences.map((_experience, _index) => {
+                                    return (
+                                        <div key={ _index }>
+                                            <WorkExperienceItem experience={ _experience }
+                                                            editExperience={ this.editExperience }
+                                                            removeExperience={ removeExperience }/>
+                                        </div>
+                                    )
+                                })
+                            }
                         </List>
 
                     </div>
@@ -99,7 +110,11 @@ class WorkExperience extends React.Component {
         else {
             return (
                 <WorkExperienceItemEdit
-                    experience = { this.state.selectedExperienced }/>
+                    experience={this.state.selectedExperience}
+                    removeExperience={removeExperience}
+                    addExperience={addExperience}
+                    updateExperience={updateExperience}
+                    leaveEditMode={this.leaveEditMode} />
             )
         };
     }

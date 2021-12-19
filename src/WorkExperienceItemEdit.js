@@ -56,7 +56,9 @@ class WorkExperienceItemEdit extends React.Component {
     }
 
     submit = () => {
+        
         this.props.updateExperience(this.state.initialExperience, this.state.experience);
+
         this.props.leaveEditMode();
     }
 
@@ -69,7 +71,6 @@ class WorkExperienceItemEdit extends React.Component {
                 <p>Please add your work experience below</p>
 
                 <div className={classes.formRow}>
-
                     <TextField 
                         className = {classes.textField}
                         placeholder="Employer"
@@ -80,16 +81,44 @@ class WorkExperienceItemEdit extends React.Component {
                                 ...this.state.experience,
                                 employer: e.target.value
                             }
-                        })}>
-                    </TextField>
-                    
+                        })
+                        }/>                    
                 </div>
 
-                <div classnName={classes.formRow}>
+                <div className={classes.formRow}>
+                    <TextField
+                        className={classes.textField}
+                        placeholder="Start date"
+                        variant="outlined"
+                        type="date"
+                        value={this.state.experience.start}
+                        onChange={e => this.setState({
+                            qualification: {
+                                ...this.state.qualification,
+                                start: e.target.value
+                            }
+                        })
+                        } />
 
+                    <TextField
+                        className={classes.textField}
+                        placeholder="End date"
+                        variant="outlined"
+                        type="date"
+                        value={this.state.experience.end}
+                        onChange={e => this.setState({
+                            qualification: {
+                                ...this.state.qualification,
+                                end: e.target.value
+                            }
+                        })
+                        } />
+                </div>
+
+                <div className={classes.formRow}>
                     <Button
                         className={classes.button}
-                        variant="container"
+                        variant="contained"
                         onClick={this.props.leaveEditMode}>Cancel</Button>
 
                     <Button 
@@ -97,15 +126,10 @@ class WorkExperienceItemEdit extends React.Component {
                         variant="contained"
                         color="primary"
                         onClick={this.submit}>Submit</Button>
-
                 </div>
-
             </div>
-
-
         )
-
-    }
+    };
 }
 
 export default withStyles(useStyles)(WorkExperienceItemEdit);

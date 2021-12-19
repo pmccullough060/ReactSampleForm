@@ -83,7 +83,7 @@ class QualificationItemEdit extends React.Component {
                                 institution: e.target.value
                             }
                         })
-                        } />
+                        }/>
                 </div>
 
                 <div className={classes.formRow}>

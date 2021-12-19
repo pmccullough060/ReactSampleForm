@@ -96,6 +96,7 @@ class Qualifications extends React.Component {
                                 })
                             }
                         </List>
+                        
                     </div>
 
                     <div className={classes.buttonContainer}>

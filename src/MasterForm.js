@@ -2,7 +2,6 @@ import React from 'react';
 import Details from './Details.js';
 import Qualifications from './Qualifications';
 import WorkExperience from './WorkExperience';
-import { Button } from '@material-ui/core';
 import Progress from './Progress.js';
 
 class MasterForm extends React.Component {
@@ -15,7 +14,8 @@ class MasterForm extends React.Component {
             email: '',
             username: '',
             password: '',
-            qualifications : []
+            qualifications : [],
+            experiences: []
         }
 
         //allows method to access this classes props and state.
@@ -28,6 +28,8 @@ class MasterForm extends React.Component {
             [ name ] : value
         })
     }
+
+    //Updating the Qualification items - could we roll these into one method?
 
     addQualification = (qualification) => {
         const { qualifications } = this.state;
@@ -44,6 +46,25 @@ class MasterForm extends React.Component {
         var updatedQualifications = qualifications.filter(_qualification => _qualification !== initialQualification);
         updatedQualifications.push(qualification);
         this.setState({qualifications: updatedQualifications});
+    }
+
+    //Updating the experience objects - could we roll these into one method?
+
+    addExperience = (experience) => {
+        const { experiences } = this.state;
+        this.setState({experiences: [...experiences, experience]});
+    }
+
+    removeExperience = (experience)=> {
+        const { experiences } = this.state;
+        this.setState({experiences: experiences.filter(_experience => _experience !== experience)});
+    }
+
+    updateExperience = (initialExperience, experience) => {
+        const { experiences } = this.state;
+        var updatedExperiences = experiences.filter(_experience => _experience !== initialExperience);
+        updatedExperiences.push(experience);
+        this.setState({experiences: updatedExperiences});
     }
 
     next = () => {
@@ -72,8 +93,6 @@ class MasterForm extends React.Component {
               Password: ${password}`);
     }
 
-    //we need to have react component for progress.
-
     render(){
         return(
             <div>
@@ -86,13 +105,13 @@ class MasterForm extends React.Component {
 
                     <Details
                         currentStep={this.state.currentStep}
-                        handleChange={this.handleChange}
+                        handleChange={this.handleChange} //might get rid!
                         email={this.state.email}
                         next={this.next}/>
 
                     <Qualifications
                         currentStep={this.state.currentStep}
-                        handleChange={this.handleChange}
+                        handleChange={this.handleChange} //might get rid!
                         addQualification={this.addQualification}
                         removeQualification={this.removeQualification}
                         updateQualification={this.updateQualification}
@@ -102,9 +121,12 @@ class MasterForm extends React.Component {
 
                     <WorkExperience
                         currentStep={this.state.currentStep}
+                        handleChange={this.handleChange} //might get rid!
+                        removeExperience={this.removeQualification}
+                        updateExperience={this.updateExperience}
+                        experiences={this.state.experiences}
                         prev={this.prev}/>
                 </form>
-
             </div>
         )
     }
